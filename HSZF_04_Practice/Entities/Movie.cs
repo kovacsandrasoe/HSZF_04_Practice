@@ -43,7 +43,7 @@ namespace HSZF_04_Practice.Entities
             Roles = new HashSet<Role>();
         }
 
-        public Movie(int id, string title, double income, double rating, DateTime release, int directorId) : this()
+        public Movie(int id, string title, double income, int directorId, DateTime release, double rating) : this()
         {
             Id = id;
             Title = title;
