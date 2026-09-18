@@ -20,9 +20,46 @@ namespace HSZF_04_Practice
 
             //MoviesWithRoles(context);
 
-            DirectorStat(context);
+            //DirectorStat(context);
+
+            ActorPairsInSameMovies(context);
 
             Console.ReadLine();
+        }
+
+        private static void ActorPairsInSameMovies(MovieDBContext context)
+        {
+            // Query5
+            Console.WriteLine("--- Query #5: Actor pairs in same movies ---");
+            var actorPairs = from actor1 in context.Roles
+                             join actor2 in context.Roles
+                                on actor1.MovieId equals actor2.MovieId
+                             where actor1.Id < actor2.Id // This is necessary for prevent row duplication A - B vs B - A
+                             select new
+                             {
+                                 Act1Name = actor1.Actor.Name,
+                                 Act2Name = actor2.Actor.Name,
+                                 MovieId = actor1.MovieId
+                             };
+
+
+            var groupedActorPairs = from actors in actorPairs
+                                    group actors by new { actors.Act1Name, actors.Act2Name } into grouped
+                                    select new
+                                    {
+                                        grouped.Key.Act1Name,
+                                        grouped.Key.Act2Name,
+                                        MovieCount = grouped.Count()
+                                    };
+
+            var filteredOrderedActorPairs = groupedActorPairs.Where(x => x.MovieCount >= 2).OrderBy(x => x.Act1Name).ThenBy(x => x.Act2Name);
+
+
+
+            foreach (var actor in filteredOrderedActorPairs)
+            {
+                Console.WriteLine(actor.ToString());
+            }
         }
 
         private static void DirectorStat(MovieDBContext context)
