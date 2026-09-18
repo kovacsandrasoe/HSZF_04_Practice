@@ -18,9 +18,33 @@ namespace HSZF_04_Practice
 
             //RolesByActors(context);
 
-            MoviesWithRoles(context);
+            //MoviesWithRoles(context);
+
+            DirectorStat(context);
 
             Console.ReadLine();
+        }
+
+        private static void DirectorStat(MovieDBContext context)
+        {
+            //Query 4
+            Console.WriteLine("--- Query #4: DirectorStats ---");
+
+            var directors = from d in context.Directors
+                            where d.Movies.Count() >= 2 // LazyLoad!!
+                            select new
+                            {
+                                d.Name,
+                                NumberOfMovies = d.Movies.Count(),
+                                AvgRating = d.Movies.Select(x => x.Rating).Average(), // Not necessary the select
+                                TotalIncome = d.Movies.Sum(x => x.Income),
+                                HighestIncome = d.Movies.Max(x => x.Income)
+                            };
+
+            foreach (var director in directors)
+            {
+                Console.WriteLine("{0} | Number of movies: {1} | AvgRating: {2} | Total Inc.: {3} | Highest Inc.: {4}", director.Name, director.NumberOfMovies, director.AvgRating, director.TotalIncome, director.HighestIncome);
+            }
         }
 
         private static void MoviesWithRoles(MovieDBContext context)
