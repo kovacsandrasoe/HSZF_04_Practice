@@ -1,6 +1,7 @@
 ﻿using HSZF_04_Practice.Contexts;
 using HSZF_04_Practice.Entities;
 using Microsoft.EntityFrameworkCore;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace HSZF_04_Practice
 {
@@ -15,9 +16,40 @@ namespace HSZF_04_Practice
 
             //FilmsWithDirectorData(context);
 
-            RolesByActors(context);
+            //RolesByActors(context);
+
+            MoviesWithRoles(context);
 
             Console.ReadLine();
+        }
+
+        private static void MoviesWithRoles(MovieDBContext context)
+        {
+            // Query 3
+            Console.WriteLine("---Query #3: Movies with role numbers over 14 roles  ---");
+            var groupedRoles = context.Roles.GroupBy(x => x.MovieId).Select(x => new
+            {
+                MovieId = x.Key,
+                RoleNumbers = x.Count(),
+            });
+
+            var moviesWithRoleNums = (from movie in context.Movies
+                                      join roles in groupedRoles
+                                         on movie.Id equals roles.MovieId
+                                      where roles.RoleNumbers >= 15
+                                      orderby roles.RoleNumbers descending
+                                      select new
+                                      {
+                                          MovieTitle = movie.Title,
+                                          DirectorName = movie.Director.Name, // Lazy loading!!!
+                                          RolesNumber = roles.RoleNumbers,
+                                          Rating = movie.Rating,
+                                      }).ToList();
+
+            foreach (var movie in moviesWithRoleNums)
+            {
+                Console.WriteLine("{0} ({1}) Rating: {2} - Role numbers: {3}", movie.MovieTitle, movie.DirectorName, movie.Rating, movie.RolesNumber);
+            }
         }
 
         private static void RolesByActors(MovieDBContext context)
