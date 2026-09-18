@@ -1,4 +1,6 @@
 ﻿using HSZF_04_Practice.Contexts;
+using HSZF_04_Practice.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace HSZF_04_Practice
 {
@@ -11,9 +13,58 @@ namespace HSZF_04_Practice
             var context = new MovieDBContext();
             //BasicDataListingWithLazyLoadingTest(context);
 
-            FilmsWithDirectorData(context);
+            //FilmsWithDirectorData(context);
+
+            RolesByActors(context);
 
             Console.ReadLine();
+        }
+
+        private static void RolesByActors(MovieDBContext context)
+        {
+            // Query #2
+            Console.WriteLine("--- Query #2: Actors with their roles in movies up to role priority 5 --- ");
+            var actorsWithRoles = (from actor in context.Actors
+                                   join role in context.Roles
+                                     on actor.Id equals role.ActorId
+                                   join movie in context.Movies
+                                     on role.MovieId equals movie.Id
+                                   where role.Priority <= 5
+                                   orderby actor.Name
+                                   select new
+                                   {
+                                       actorId = actor.Id,
+                                       movieId = movie.Id,
+                                       actorName = actor.Name,
+                                       movieTitle = movie.Title,
+                                       roleName = role.Name,
+                                       rolePriority = role.Priority,
+                                   }).ToList();
+
+            foreach (var actor in actorsWithRoles)
+            {
+                Console.WriteLine("{0} | {1} | {2} | {3}", actor.actorName, actor.movieTitle, actor.roleName, actor.rolePriority);
+            }
+
+            Console.WriteLine("\nWith navprops and eager load:");
+
+            var actorsWithRoles2 = (from role in context.Roles.Include(x => x.Actor).Include(x => x.Movie)
+                                    where role.Priority <= 5
+                                    orderby role.Actor.Name
+                                    select new
+                                    {
+                                        actorId = role.Actor.Id,
+                                        movieId = role.Movie.Id,
+                                        actorName = role.Actor.Name,
+                                        movieTitle = role.Movie.Title,
+                                        roleName = role.Name,
+                                        rolePriority = role.Priority,
+                                    }).ToList();
+
+            foreach (var actor in actorsWithRoles2)
+            {
+                Console.WriteLine("{0} | {1} | {2} | {3}", actor.actorName, actor.movieTitle, actor.roleName, actor.rolePriority);
+            }
         }
 
         private static void FilmsWithDirectorData(MovieDBContext context)
