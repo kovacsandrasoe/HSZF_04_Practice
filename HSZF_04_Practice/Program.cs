@@ -6,10 +6,42 @@ namespace HSZF_04_Practice
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Console.WriteLine("Movie DB handler app");
 
             var context = new MovieDBContext();
+            //BasicDataListingWithLazyLoadingTest(context);
 
+            FilmsWithDirectorData(context);
+
+            Console.ReadLine();
+        }
+
+        private static void FilmsWithDirectorData(MovieDBContext context)
+        {
+            // Query #1.
+            Console.WriteLine("--- Query #1: Films with director data --- ");
+            var movieDetails = from movie in context.Movies
+                               join director in context.Directors
+                                    on movie.DirectorId equals director.Id
+                               select new
+                               {
+                                   Title = movie.Title,
+                                   movie.Release, // Not necessary the name definition
+                                   DirectorName = director.Name,
+                                   movie.Income,
+                                   movie.Rating,
+                               };
+
+            var orderedMovieDetails = movieDetails.OrderBy(x => x.Release).ThenByDescending(x => x.Rating).ToList();
+
+            foreach (var movie in orderedMovieDetails)
+            {
+                Console.WriteLine("[{0}] {1} (Director: {2}) - Rating: {3}; Income: {4}", movie.Release.Year, movie.Title, movie.DirectorName, movie.Rating, movie.Income);
+            }
+        }
+
+        private static void BasicDataListingWithLazyLoadingTest(MovieDBContext context)
+        {
             Console.WriteLine("Directors: ");
 
             foreach (var director in context.Directors)
@@ -37,8 +69,6 @@ namespace HSZF_04_Practice
             {
                 Console.WriteLine($"{role.Name} on film '{role.Movie.Title}' for actor '{role.Actor.Name}'");
             }
-
-            Console.ReadLine();
         }
     }
 }
