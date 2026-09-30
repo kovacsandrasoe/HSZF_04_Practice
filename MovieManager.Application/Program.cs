@@ -7,7 +7,10 @@ namespace MovieManager.Application
         static void Main(string[] args)
         {
             var db = new MovieDBContext();
-            var actors = db.Actors.ToArray();
+            var repo = new MovieRepository(db);
+
+            var movies = repo.ReadAll();
+            ;
             
         }
     }
