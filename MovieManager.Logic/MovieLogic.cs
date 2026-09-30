@@ -1,4 +1,5 @@
 ﻿using MovieManager.Models;
+using MovieManager.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace MovieManager.Logic
 {
     public class MovieLogic
     {
-        IRepository<Movie> repository;
-        public MovieLogic(IRepository<Movie> repository)
+        IMovieRepository repository;
+        public MovieLogic(IMovieRepository repository)
         {
             this.repository = repository;
         }
