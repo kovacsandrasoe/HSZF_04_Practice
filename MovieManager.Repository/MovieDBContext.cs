@@ -1,7 +1,7 @@
-﻿using HSZF_04_Practice.Entities;
+﻿using MovieManager.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace HSZF_04_Practice.Contexts
+namespace MovieManager.Repository
 {
     public class MovieDBContext : DbContext
     {

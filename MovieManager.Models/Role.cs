@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace HSZF_04_Practice.Entities
+namespace MovieManager.Models
 {
     [Table("Roles")]
     public class Role
