@@ -1,10 +1,14 @@
-﻿namespace MovieManager.Application
+﻿using MovieManager.Repository;
+
+namespace MovieManager.Application
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            var db = new MovieDBContext();
+            var actors = db.Actors.ToArray();
+            
         }
     }
 }
