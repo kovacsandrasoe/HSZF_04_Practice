@@ -7,45 +7,45 @@ using System.Threading.Tasks;
 
 namespace MovieManager.Repository
 {
-    public class MovieRepository : IMovieRepository 
-    { 
-        MovieDbContext context; 
-        public MovieRepository(MovieDbContext context) 
-        { 
+    public class MovieRepository : IMovieRepository
+    {
+        MovieDBContext context;
+        public MovieRepository(MovieDBContext context)
+        {
             this.context = context;
-        } 
-        
-        public void Create(Movie movie) 
-        { 
-            this.context.Movies.Add(movie); 
-            this.context.SaveChanges(); 
-        } 
-        
-        public void Delete(int id) 
-        { 
+        }
+
+        public void Create(Movie movie)
+        {
+            this.context.Movies.Add(movie);
+            this.context.SaveChanges();
+        }
+
+        public void Delete(int id)
+        {
             this.context.Movies.Remove(Read(id));
-            this.context.SaveChanges(); 
+            this.context.SaveChanges();
         }
 
-        public Movie Read(int id) 
-        { 
-            return this.context.Movies.FirstOrDefault(t => t.MovieId == id);
+        public Movie Read(int id)
+        {
+            return this.context.Movies.FirstOrDefault(t => t.Id == id);
         }
 
-        public IQueryable<Movie> ReadAll() 
-        { 
+        public IQueryable<Movie> ReadAll()
+        {
             return this.context.Movies;
         }
 
-        public void Update(Movie movie) 
-        { 
-            var oldmovie = Read(movie.MovieId);
+        public void Update(Movie movie)
+        {
+            var oldmovie = Read(movie.Id);
             oldmovie.Income = movie.Income;
             oldmovie.Rating = movie.Rating;
             oldmovie.DirectorId = movie.DirectorId;
-            oldmovie.Release = movie.Release; 
-            oldmovie.Title = movie.Title; 
-            this.context.SaveChanges(); 
+            oldmovie.Release = movie.Release;
+            oldmovie.Title = movie.Title;
+            this.context.SaveChanges();
         }
     }
 }
