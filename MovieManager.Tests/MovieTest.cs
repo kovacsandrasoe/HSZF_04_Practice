@@ -28,5 +28,14 @@ namespace MovieManager.Tests
             
             logic = new MovieLogic(mockrepo.Object);
         }
+
+        [Test]
+        public void LinqTest01()
+        {
+            var result = logic.GetAverageRatePerYear(2002);
+            Assert.That(result == 7.5);
+        }
+
+
     }
 }

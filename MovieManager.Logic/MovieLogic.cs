@@ -56,5 +56,10 @@ namespace MovieManager.Logic
             .Average(t => t.Rating);
         }
 
+        public IEnumerable<YearStat> SummaryOfYears()
+        {
+            return null;
+        }
+
     }
 }
