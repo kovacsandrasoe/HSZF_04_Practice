@@ -1,5 +1,6 @@
 ﻿using Moq;
 using MovieManager.Logic;
+using MovieManager.Models;
 using MovieManager.Repository;
 using NUnit.Framework;
 
@@ -13,6 +14,14 @@ namespace MovieManager.Tests
         [SetUp]
         public void Init()
         {
+            var movies = new List<Movie>()
+            {
+                new Movie(1, "A", 1000, 2, new DateTime(2002, 1,1), 8),
+                new Movie(2, "B", 1000, 2, new DateTime(2003, 1,1), 6),
+                new Movie(3, "C", 1000, 2, new DateTime(2002, 1,1), 7),
+                new Movie(4, "D", 1000, 2, new DateTime(2004, 1,1), 5),
+            };
+
             Mock<IMovieRepository> mockrepo = new Mock<IMovieRepository>();
             logic = new MovieLogic(mockrepo.Object);
         }
