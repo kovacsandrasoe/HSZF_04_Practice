@@ -21,8 +21,10 @@ namespace MovieManager.Repository
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder
-                    .UseLazyLoadingProxies()
-                    .UseSqlServer(@"Server=(localdb)\\MSSQLLocalDB;Database=MovieManager1007;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=True");
+                    .UseInMemoryDatabase("db")
+                    .UseLazyLoadingProxies();
+                    
+                    //.UseSqlServer(@"Server=(localdb)\\MSSQLLocalDB;Database=MovieManager1007;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=True");
             }
         }
 
