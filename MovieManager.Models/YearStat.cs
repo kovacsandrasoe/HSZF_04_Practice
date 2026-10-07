@@ -18,5 +18,15 @@ namespace MovieManager.Models
         public int Year { get; }
         public int Count { get; }
         public double AverageRate { get; }
+
+        public override bool Equals(object? obj)
+        {
+            return this.GetHashCode() == obj?.GetHashCode();
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Year, Count, AverageRate);
+        }
     }
 }

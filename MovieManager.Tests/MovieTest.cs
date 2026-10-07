@@ -41,9 +41,21 @@ namespace MovieManager.Tests
         public void YearStatTest()
         {
             var result = logic.SummaryOfYears();
-            Assert.That(result.Count() == 3);
+
+            var x = result.First().GetHashCode();
+
+            var expected = new List<YearStat>()
+            {
+                new YearStat(2002, 2, 7.5),
+                new YearStat(2003, 1, 6),
+                new YearStat(2004, 1, 5)
+            };
+
+            Assert.That(result, Is.EqualTo(expected));
+
+            /*Assert.That(result.Count() == 3);
             Assert.That(result.First().Year == 2002);
-            Assert.That(result.First().AverageRate == 7.5);
+            Assert.That(result.First().AverageRate == 7.5);*/
         }
     }
 }
