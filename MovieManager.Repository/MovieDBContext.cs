@@ -22,8 +22,7 @@ namespace MovieManager.Repository
             {
                 optionsBuilder
                     .UseLazyLoadingProxies()
-                    .UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;
-AttachDbFilename=|DataDirectory|\movies.mdf;Integrated Security=True;MultipleActiveResultSets=true",
+                    .UseSqlServer(@"Server=(localdb)\\MSSQLLocalDB;Database=MovieManager1007;Trusted_Connection=True;TrustServerCertificate=True;",
                         providerOptions => providerOptions.EnableRetryOnFailure());
             }
         }
