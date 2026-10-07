@@ -42,8 +42,6 @@ namespace MovieManager.Tests
         {
             var result = logic.SummaryOfYears();
 
-            var x = result.First().GetHashCode();
-
             var expected = new List<YearStat>()
             {
                 new YearStat(2002, 2, 7.5),
