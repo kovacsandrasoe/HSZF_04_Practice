@@ -58,7 +58,11 @@ namespace MovieManager.Logic
 
         public IEnumerable<YearStat> SummaryOfYears()
         {
-            return null;
+            return this.repository
+                .ReadAll()
+                .GroupBy(z => z.Release.Year)
+                .Select(z => new YearStat
+                (z.Key, z.Count(), z.Average(t => t.Rating)));
         }
 
     }

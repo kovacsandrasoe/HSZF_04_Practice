@@ -37,5 +37,13 @@ namespace MovieManager.Tests
         }
 
 
+        [Test]
+        public void YearStatTest()
+        {
+            var result = logic.SummaryOfYears();
+            Assert.That(result.Count() == 3);
+            Assert.That(result.First().Year == 2002);
+            Assert.That(result.First().AverageRate == 7.5);
+        }
     }
 }
