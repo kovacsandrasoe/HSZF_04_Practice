@@ -12,7 +12,7 @@ namespace MovieManager.Repository
 
         public MovieDBContext()
         {
-            //Database.EnsureDeleted();
+            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
@@ -22,8 +22,7 @@ namespace MovieManager.Repository
             {
                 optionsBuilder
                     .UseLazyLoadingProxies()
-                    .UseSqlServer(@"Server=(localdb)\\MSSQLLocalDB;Database=MovieManager1007;Trusted_Connection=True;TrustServerCertificate=True;",
-                        providerOptions => providerOptions.EnableRetryOnFailure());
+                    .UseSqlServer(@"Server=(localdb)\\MSSQLLocalDB;Database=MovieManager1007;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=True");
             }
         }
 
