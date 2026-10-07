@@ -23,6 +23,9 @@ namespace MovieManager.Tests
             };
 
             Mock<IMovieRepository> mockrepo = new Mock<IMovieRepository>();
+
+            mockrepo.Setup(m => m.ReadAll()).Returns(movies.AsQueryable());
+            
             logic = new MovieLogic(mockrepo.Object);
         }
     }
