@@ -46,5 +46,11 @@ namespace MovieManager.Endpoints.Controllers
             logic.Update(id, movie);
         }
 
+        [HttpGet("year-stat")]
+        public IEnumerable<YearStat> GetYearStat()
+        {
+            return logic.SummaryOfYears();
+        }
+
     }
 }
