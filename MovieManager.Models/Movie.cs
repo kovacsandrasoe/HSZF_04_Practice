@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace MovieManager.Models
 {
@@ -12,7 +13,7 @@ namespace MovieManager.Models
 
         [Required]
         [StringLength(240)]
-        public string Title { get; set; }
+        public string Title { get; set; } = string.Empty;
 
         [Range(0, 10000)]
         public double Income { get; set; }
@@ -30,10 +31,12 @@ namespace MovieManager.Models
 
         [NotMapped]
         [DeleteBehavior(DeleteBehavior.Cascade)]
-        public virtual Director Director { get; set; }
+        [JsonIgnore]
+        public virtual Director? Director { get; set; }
 
         [NotMapped]
         [ForeignKey(nameof(Role.MovieId))]
+        [JsonIgnore]
         public virtual ICollection<Role> Roles { get; set; }
 
         #endregion

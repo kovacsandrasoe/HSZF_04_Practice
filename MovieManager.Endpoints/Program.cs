@@ -1,4 +1,7 @@
 
+using MovieManager.Logic;
+using MovieManager.Repository;
+
 namespace MovieManager.Endpoints
 {
     public class Program
@@ -13,6 +16,11 @@ namespace MovieManager.Endpoints
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<MovieDBContext>();
+
+            builder.Services.AddScoped<IMovieLogic, MovieLogic>();
+            builder.Services.AddScoped<IMovieRepository, MovieRepository>();
 
             var app = builder.Build();
 

@@ -12,7 +12,7 @@ namespace MovieManager.Repository
 
         public MovieDBContext()
         {
-            Database.EnsureDeleted();
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 

@@ -29,7 +29,7 @@ namespace MovieManager.Repository
 
         public Movie Read(int id)
         {
-            return this.context.Movies.FirstOrDefault(t => t.Id == id);
+            return this.context.Movies.First(t => t.Id == id);
         }
 
         public IQueryable<Movie> ReadAll()
@@ -39,12 +39,6 @@ namespace MovieManager.Repository
 
         public void Update(Movie movie)
         {
-            var oldmovie = Read(movie.Id);
-            oldmovie.Income = movie.Income;
-            oldmovie.Rating = movie.Rating;
-            oldmovie.DirectorId = movie.DirectorId;
-            oldmovie.Release = movie.Release;
-            oldmovie.Title = movie.Title;
             this.context.SaveChanges();
         }
     }
