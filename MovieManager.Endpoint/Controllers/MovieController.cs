@@ -20,6 +20,7 @@ namespace MovieManager.Endpoint.Controllers
             return logic.ReadAll();
         }
 
+
         [HttpGet("{id}")]
         public Movie GetMovie(int id)
         {
@@ -32,6 +33,18 @@ namespace MovieManager.Endpoint.Controllers
             logic.Create(m);
         }
 
+
+        [HttpDelete("{id}")]
+        public void DeleteMovie(int id)
+        {
+            logic.Delete(id);
+        }
+
+        [HttpPut]
+        public void UpdateMovie([FromBody] Movie movie)
+        {
+            logic.Update(movie);
+        }
 
     }
 }
