@@ -19,5 +19,19 @@ namespace MovieManager.Endpoint.Controllers
         {
             return logic.ReadAll();
         }
+
+        [HttpGet("{id}")]
+        public Movie GetMovie(int id)
+        {
+            return logic.Read(id);
+        }
+
+        [HttpPost]
+        public void CreateMovie([FromBody] Movie m)
+        {
+            logic.Create(m);
+        }
+
+
     }
 }

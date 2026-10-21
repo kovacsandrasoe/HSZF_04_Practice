@@ -32,12 +32,12 @@ namespace MovieManager.Models
         [NotMapped]
         [JsonIgnore]
         [DeleteBehavior(DeleteBehavior.Cascade)]
-        public virtual Director Director { get; set; }
+        public virtual Director? Director { get; set; }
 
         [NotMapped]
         [JsonIgnore]
         [ForeignKey(nameof(Role.MovieId))]
-        public virtual ICollection<Role> Roles { get; set; }
+        public virtual ICollection<Role>? Roles { get; set; }
 
         #endregion
 
