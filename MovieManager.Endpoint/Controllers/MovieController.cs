@@ -27,6 +27,12 @@ namespace MovieManager.Endpoint.Controllers
             return logic.Read(id);
         }
 
+        [HttpGet("year-stat")]
+        public IEnumerable<YearStat> GetYearStat() 
+        {
+            return logic.SummaryOfYears();
+        }
+
         [HttpPost]
         public void CreateMovie([FromBody] Movie m)
         {
