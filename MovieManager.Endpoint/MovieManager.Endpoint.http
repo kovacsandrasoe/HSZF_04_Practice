@@ -1,0 +1,6 @@
+@MovieManager.Endpoint_HostAddress = http://localhost:5036
+
+GET {{MovieManager.Endpoint_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
