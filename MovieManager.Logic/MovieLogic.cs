@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MovieManager.Logic
 {
-    public class MovieLogic
+    public class MovieLogic : IMovieLogic
     {
         IMovieRepository repository;
         public MovieLogic(IMovieRepository repository)
