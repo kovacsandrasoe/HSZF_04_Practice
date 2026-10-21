@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace MovieManager.Models
 {
@@ -29,10 +30,12 @@ namespace MovieManager.Models
         #region Navigation props
 
         [NotMapped]
+        [JsonIgnore]
         [DeleteBehavior(DeleteBehavior.Cascade)]
         public virtual Director Director { get; set; }
 
         [NotMapped]
+        [JsonIgnore]
         [ForeignKey(nameof(Role.MovieId))]
         public virtual ICollection<Role> Roles { get; set; }
 
