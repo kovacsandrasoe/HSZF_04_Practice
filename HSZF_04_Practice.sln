@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieManager.Tests", "Movie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieManager.Endpoint", "MovieManager.Endpoint\MovieManager.Endpoint.csproj", "{79421AA3-4149-4DC9-AF96-1899A2D60011}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieManager.ConsoleClient", "MovieManager.ConsoleClient\MovieManager.ConsoleClient.csproj", "{F4F58074-3F78-416F-AAFA-EBE9202C139F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{79421AA3-4149-4DC9-AF96-1899A2D60011}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79421AA3-4149-4DC9-AF96-1899A2D60011}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79421AA3-4149-4DC9-AF96-1899A2D60011}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4F58074-3F78-416F-AAFA-EBE9202C139F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4F58074-3F78-416F-AAFA-EBE9202C139F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4F58074-3F78-416F-AAFA-EBE9202C139F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4F58074-3F78-416F-AAFA-EBE9202C139F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
