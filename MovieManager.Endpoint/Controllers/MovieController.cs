@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MovieManager.Logic;
 using MovieManager.Models;
+using MovieManager.Models.Dtos.Movie;
 using MovieManager.Models.Entities;
 
 namespace MovieManager.Endpoint.Controllers
@@ -16,14 +17,14 @@ namespace MovieManager.Endpoint.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Movie> GetMovies()
+        public IEnumerable<MovieViewDto> GetMovies()
         {
             return logic.ReadAll();
         }
 
 
         [HttpGet("{id}")]
-        public Movie GetMovie(int id)
+        public MovieViewDto GetMovie(int id)
         {
             return logic.Read(id);
         }

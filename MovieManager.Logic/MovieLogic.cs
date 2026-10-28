@@ -1,4 +1,5 @@
 ﻿using MovieManager.Models;
+using MovieManager.Models.Dtos.Movie;
 using MovieManager.Models.Entities;
 using MovieManager.Repository;
 using System;
@@ -27,23 +28,41 @@ namespace MovieManager.Logic
                 this.repository.Create(item);
             }
         }
-        public Movie Read(int id)
+        public MovieViewDto Read(int id)
         {
             var movie = this.repository.Read(id);
             if (movie == null)
             {
                 throw new ArgumentException("Movie not exists");
             }
-            return movie;
+
+            var dto = new MovieViewDto();
+            dto.Id = movie.Id;
+            dto.Title = movie.Title;
+            dto.Rating = movie.Rating;
+            dto.Income = movie.Income;
+            dto.Release = movie.Release;
+            dto.DirectorName = movie.Director?.Name ?? "ismeretlen rendező";
+
+            return dto;
         }
 
         public void Delete(int id)
         {
             this.repository.Delete(id);
         }
-        public IEnumerable<Movie> ReadAll()
+        public IEnumerable<MovieViewDto> ReadAll()
         {
-            return this.repository.ReadAll();
+            return this.repository.ReadAll().Select(t =>
+                new MovieViewDto()
+                {
+                    Id = t.Id,
+                    Title = t.Title,
+                    Rating = t.Rating,
+                    Income = t.Income,
+                    Release = t.Release,
+                    DirectorName = t.Director!.Name
+                });
         }
         public void Update(Movie item)
         {

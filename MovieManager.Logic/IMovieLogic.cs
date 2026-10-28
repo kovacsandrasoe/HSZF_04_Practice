@@ -1,4 +1,5 @@
 ﻿using MovieManager.Models;
+using MovieManager.Models.Dtos.Movie;
 using MovieManager.Models.Entities;
 
 namespace MovieManager.Logic
@@ -8,8 +9,8 @@ namespace MovieManager.Logic
         void Create(Movie item);
         void Delete(int id);
         double? GetAverageRatePerYear(int year);
-        Movie Read(int id);
-        IEnumerable<Movie> ReadAll();
+        MovieViewDto Read(int id);
+        IEnumerable<MovieViewDto> ReadAll();
         IEnumerable<YearStat> SummaryOfYears();
         void Update(Movie item);
     }
