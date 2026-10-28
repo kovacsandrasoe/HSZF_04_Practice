@@ -17,7 +17,7 @@ namespace MovieManager.Logic
         {
             this.repository = repository;
         }
-        public void Create(Movie item)
+        public void Create(MovieCreateUpdateDto item)
         {
             if (item.Title.Length < 3)
             {
@@ -25,7 +25,13 @@ namespace MovieManager.Logic
             }
             else
             {
-                this.repository.Create(item);
+                Movie m = new Movie();
+                m.Title = item.Title;
+                m.DirectorId = item.DirectorId;
+                m.Release = item.Release;
+                m.Income = item.Income;
+                m.Rating = item.Rating;
+                this.repository.Create(m);
             }
         }
         public MovieViewDto Read(int id)
