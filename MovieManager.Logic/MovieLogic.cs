@@ -70,9 +70,15 @@ namespace MovieManager.Logic
                     DirectorName = t.Director!.Name
                 });
         }
-        public void Update(Movie item)
+        public void Update(int id, MovieCreateUpdateDto dto)
         {
-            this.repository.Update(item);
+            var old = this.repository.Read(id);
+            old.Title = dto.Title;
+            old.Rating = dto.Rating;
+            old.Income = dto.Income;
+            old.DirectorId = dto.DirectorId;
+            old.Release = dto.Release;
+            this.repository.Update(old);
         }
         public double? GetAverageRatePerYear(int year)
         {
