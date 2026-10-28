@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MovieManager.Models
+namespace MovieManager.Models.Entities
 {
     [Table("Directors")]
     public class Director

@@ -1,5 +1,5 @@
-﻿using MovieManager.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using MovieManager.Models.Entities;
 
 namespace MovieManager.Repository
 {

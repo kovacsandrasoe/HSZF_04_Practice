@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace MovieManager.Models
+namespace MovieManager.Models.Entities
 {
     [Table("Movies")]
     public class Movie
@@ -24,7 +24,7 @@ namespace MovieManager.Models
         public DateTime Release { get; set; }
 
         //[Required]
-        [ForeignKey(nameof(Movie.Director))]
+        [ForeignKey(nameof(Director))]
         public int DirectorId { get; set; }
 
         #region Navigation props

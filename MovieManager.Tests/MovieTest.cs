@@ -1,6 +1,7 @@
 ﻿using Moq;
 using MovieManager.Logic;
 using MovieManager.Models;
+using MovieManager.Models.Entities;
 using MovieManager.Repository;
 using NUnit.Framework;
 

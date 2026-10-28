@@ -1,4 +1,5 @@
 ﻿using MovieManager.Models;
+using MovieManager.Models.Entities;
 using MovieManager.Repository;
 using System;
 using System.Collections.Generic;

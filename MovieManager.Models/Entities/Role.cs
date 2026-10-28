@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MovieManager.Models
+namespace MovieManager.Models.Entities
 {
     [Table("Roles")]
     public class Role
@@ -12,12 +12,12 @@ namespace MovieManager.Models
 
         // CompositKey example
         //[Key, Column(Order = 0)] // Not necessary the Order definition, use the same prop ordering
-        [ForeignKey(nameof(Role.Movie))]
+        [ForeignKey(nameof(Movie))]
         public int MovieId { get; set; }
 
         // CompositKey example
         //[Key, Column(Order = 1)] // Not necessary the Order definition, use the same prop ordering
-        [ForeignKey(nameof(Role.Actor))]
+        [ForeignKey(nameof(Actor))]
         public int ActorId { get; set; }
 
         [Range(1, 10)]

@@ -1,4 +1,4 @@
-﻿using MovieManager.Models;
+﻿using MovieManager.Models.Entities;
 
 namespace MovieManager.Repository
 {

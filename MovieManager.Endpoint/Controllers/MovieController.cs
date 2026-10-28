@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MovieManager.Logic;
 using MovieManager.Models;
+using MovieManager.Models.Entities;
 
 namespace MovieManager.Endpoint.Controllers
 {
