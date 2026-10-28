@@ -30,13 +30,13 @@ namespace MovieManager.Endpoint.Controllers
         }
 
         [HttpGet("year-stat")]
-        public IEnumerable<YearStat> GetYearStat() 
+        public IEnumerable<YearStat> GetYearStat()
         {
             return logic.SummaryOfYears();
         }
 
         [HttpPost]
-        public void CreateMovie([FromBody] Movie m)
+        public void CreateMovie([FromBody] MovieCreateUpdateDto m)
         {
             logic.Create(m);
         }
@@ -48,10 +48,10 @@ namespace MovieManager.Endpoint.Controllers
             logic.Delete(id);
         }
 
-        [HttpPut]
-        public void UpdateMovie([FromBody] Movie movie)
+        [HttpPut("{id}")]
+        public void UpdateMovie(int id, [FromBody] MovieCreateUpdateDto dto)
         {
-            logic.Update(movie);
+            logic.Update(id, dto);
         }
 
     }
